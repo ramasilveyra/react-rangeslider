@@ -162,31 +162,6 @@ class Slider extends Component {
   };
 
   /**
-   * Support for key events on the slider handle
-   * @param  {Object} e - Event object
-   * @return {void}
-   */
-  handleKeyDown = e => {
-    e.preventDefault()
-    const { keyCode } = e
-    const { value, min, max, step, onChange } = this.props
-    let sliderValue
-
-    switch (keyCode) {
-      case 38:
-      case 39:
-        sliderValue = value + step > max ? max : value + step
-        onChange && onChange(sliderValue, e)
-        break
-      case 37:
-      case 40:
-        sliderValue = value - step < min ? min : value - step
-        onChange && onChange(sliderValue, e)
-        break
-    }
-  };
-
-  /**
    * Calculate position of slider based on its value
    * @param  {number} value - Current value of slider
    * @return {position} pos - Calculated position of slider based on value
@@ -356,7 +331,6 @@ class Slider extends Component {
           onMouseDown={this.handleStart}
           onTouchMove={this.handleDrag}
           onTouchEnd={this.handleEnd}
-          onKeyDown={this.handleKeyDown}
           style={handleStyle}
           tabIndex={0}
         >
